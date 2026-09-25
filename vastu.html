@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>शास्त्राचार - वास्तु शास्त्र</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #fdfbf7; color: #333; margin: 20px; }
+        h1 { text-align: center; color: #8b0000; font-size: 28px; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: #555; font-size: 16px; margin-bottom: 20px; }
+        .back-btn { display: inline-block; margin-bottom: 20px; color: #8b0000; text-decoration: none; font-weight: bold; }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .vastu-card {
+            background-color: #ffffff;
+            border: 2px solid #e0d0b8;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .vastu-card:hover {
+            transform: translateY(-4px);
+            border-color: #b8860b;
+        }
+
+        .direction-title {
+            font-size: 19px;
+            font-weight: bold;
+            color: #8b0000;
+            border-bottom: 2px solid #f0e6d2;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .element-badge {
+            font-size: 12px;
+            background-color: #f5ecdf;
+            color: #8b4513;
+            padding: 4px 8px;
+            border-radius: 20px;
+        }
+
+        .vastu-details table { width: 100%; border-collapse: collapse; }
+        .vastu-details td { padding: 6px 4px; font-size: 14px; vertical-align: top; }
+        .label { font-weight: bold; color: #444; width: 35%; }
+        .do { color: #2e7d32; font-weight: 500; }
+        .dont { color: #c62828; font-weight: 500; }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">← मुख्य पोर्टल पर लौटें</a>
+    <h1>शास्त्राचार (Shashtrachar)</h1>
+    <div class="subtitle">वास्तु शास्त्र - अष्ट दिशा निर्देश एवं गृह निर्माण सारणी</div>
+
+    <div class="grid-container" id="vastuGrid"></div>
+
+    <script>
+        const vastuData = [
+            { direction: "ईशान कोण (NE)", element: "जल तत्व", owner: "गुरु / शिव", dos: "पूजा घर, जल स्रोत, खुला स्थान", donts: "भारी सामान, शौचालय, रसोई" },
+            { direction: "पूर्व दिशा (East)", element: "सूर्य", owner: "सूर्य / इन्द्र", dos: "मुख्य द्वार, अध्ययन कक्ष, बरामदा", donts: "ऊंची दीवारें, कचरा/गंदगी" },
+            { direction: "आग्नेय कोण (SE)", element: "अग्नि तत्व", owner: "शुक्र / अग्नि", dos: "रसोई घर, गीजर, बोर्ड", donts: "पानी की टंकी, बोरिंग, शयन कक्ष" },
+            { direction: "दक्षिण दिशा (South)", element: "पृथ्वी/अग्नि", owner: "मंगल / यम", dos: "भारी निर्माण, शयन कक्ष, सीढ़ियाँ", donts: "मुख्य द्वार, खाली स्थान" },
+            { direction: "नैऋत्य कोण (SW)", element: "पृथ्वी तत्व", owner: "राहु / नैऋति", dos: "मास्टर बेडरूम, तिजोरी", donts: "पूजा घर, गड्ढा, बोरिंग" },
+            { direction: "पश्चिम दिशा (West)", element: "जल/वायु", owner: "शनि / वरुण", dos: "भोजन कक्ष (Dining), टैंक", donts: "ईशान से अधिक नीचा स्थान" },
+            { direction: "वायव्य कोण (NW)", element: "वायु तत्व", owner: "चंद्रमा / वायु", dos: "अतिथि गृह, स्टोर रूम, पार्किंग", donts: "तिजोरी, मास्टर बेडरूम" },
+            { direction: "उत्तर दिशा (North)", element: "जल तत्व", owner: "बुध / कुबेर", dos: "कुबेर स्थान, तिजोरी, मुख्य द्वार", donts: "शौचालय, भारी निर्माण" }
+        ];
+
+        const gridContainer = document.getElementById('vastuGrid');
+        vastuData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'vastu-card';
+            card.innerHTML = `
+                <div class="direction-title">
+                    ${item.direction}
+                    <span class="element-badge">${item.element}</span>
+                </div>
+                <div class="vastu-details">
+                    <table>
+                        <tr><td class="label">स्वामी:</td><td>${item.owner}</td></tr>
+                        <tr><td class="label do">क्या रखें:</td><td>${item.dos}</td></tr>
+                        <tr><td class="label dont">क्या न रखें:</td><td>${item.donts}</td></tr>
+                    </table>
+                </div>
+            `;
+            gridContainer.appendChild(card);
+        });
+    </script>
+</body>
+</html>
