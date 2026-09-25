@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>संस्कृत साहित्य - शास्त्राचार</title>
+    <style>
+        :root {
+            --primary-grad: linear-gradient(135deg, #8b0000 0%, #4a0000 100%);
+            --accent-gold: #ffd700;
+            --bg-color: #0f0c1b;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(212, 175, 55, 0.3);
+            --text-color: #f1f1f1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #0f0c1b;
+            background-image: radial-gradient(circle at 50% 10%, #2c0811 0%, #0f0c1b 80%);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            border-bottom: 2px solid var(--accent-gold);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--accent-gold);
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Glassmorphism Cards */
+        .grid-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .grid-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .shlok-box {
+            background: rgba(0, 0, 0, 0.4);
+            border-left: 4px solid var(--accent-gold);
+            padding: 15px;
+            font-size: 18px;
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-radius: 8px;
+            line-height: 1.6;
+            color: #dddddd;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>📖 संस्कृत साहित्य ज्ञानकोश</h1>
+        <p>ग्रंथ, पद्धति एवं विस्तृत श्लोक व्याख्या</p>
+    </div>
+
+    <div class="container">
+        <!-- Breadcrumb Navigation -->
+        <div id="breadcrumb" class="breadcrumb" onclick="showBooks()">📚 मुख्य साहित्य की पुस्तकें</div>
+
+        <!-- Level 1: Books List -->
+        <div id="bookList">
+            <div class="grid-card" onclick="openKhand('nitishatak')">
+                <h2 style="color: var(--accent-gold); margin:0;">📙 नीतिशतकम् (भर्तृहरि)</h2>
+                <p style="margin:5px 0 0 0; color: #ccc;">10 पद्धतियाँ, नीति एवं व्यवहार दर्शन।</p>
+            </div>
+            <div class="grid-card">
+                <h2 style="color: var(--accent-gold); margin:0;">📘 किरातार्जुनीयम् (भारवि)</h2>
+                <p style="margin:5px 0 0 0; color: #ccc;">प्रथम सर्ग एवं महत्त्वपूर्ण श्लोक।</p>
+            </div>
+        </div>
+
+        <!-- Level 2: Khand/Paddhati List (For Nitishatak) -->
+        <div id="khandList" class="hidden">
+            <div class="grid-card" onclick="openShlokList('murkh')">
+                <h3>1. मूर्खपद्धति</h3>
+                <p style="color:#bbb; font-size:14px;">मूर्ख जन स्वभाव एवं लक्षण श्लोक</p>
+            </div>
+            <div class="grid-card">
+                <h3>2. विद्वत्पद्धति</h3>
+                <p style="color:#bbb; font-size:14px;">विद्वानों की महिमा एवं ज्ञान दर्शन</p>
+            </div>
+        </div>
+
+        <!-- Level 3: Shlok List & Details -->
+        <div id="shlokList" class="hidden">
+            <div class="grid-card" onclick="toggleShlok('shlok1')">
+                <h4 style="margin:0; color:var(--accent-gold);">श्लोक १: बोद्धारो मत्सरग्रस्ताः... (टैप करें)</h4>
+            </div>
+            
+            <!-- Shlok Detail View -->
+            <div id="shlok1" class="hidden" style="margin-bottom: 25px;">
+                <div class="shlok-box">
+                    बोद्धारो मत्सरग्रस्ताः प्रभवः स्मयदूषिताः।<br>
+                    अबोधोपहताश्चान्ये जीर्णमङ्गे सुभाषितम्॥
+                </div>
+                <div class="explanation">
+                    <strong style="color:var(--accent-gold);">पदच्छेद:</strong> बोद्धारः, मत्सर-ग्रस्ताः, प्रभवः, स्मय-दूषिताः...<br><br>
+                    <strong style="color:var(--accent-gold);">व्याख्या/अर्थ:</strong> ज्ञानवान लोग ईर्ष्या से ग्रस्त हैं, राजा या धनी लोग अहंकार से दूषित हैं, और बाकी जनता अज्ञान से पीड़ित है। इस कारण सुंदर सुभाषित (ज्ञान की बातें) शरीर के भीतर ही नष्ट हो जाती हैं।
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showBooks() {
+            document.getElementById('bookList').classList.remove('hidden');
+            document.getElementById('khandList').classList.add('hidden');
+            document.getElementById('shlokList').classList.add('hidden');
+            document.getElementById('breadcrumb').innerHTML = "📚 मुख्य साहित्य की पुस्तकें";
+        }
+
+        function openKhand(bookId) {
+            document.getElementById('bookList').classList.add('hidden');
+            document.getElementById('khandList').classList.remove('hidden');
+            document.getElementById('breadcrumb').innerHTML = "📚 पुस्तकें ➔ 📙 नीतिशतकम् (पद्धतियाँ)";
+        }
+
+        function openShlokList(khandId) {
+            document.getElementById('khandList').classList.add('hidden');
+            document.getElementById('shlokList').classList.remove('hidden');
+            document.getElementById('breadcrumb').innerHTML = "📚 नीतिशतकम् ➔ 1. मूर्खपद्धति (श्लोक)";
+        }
+
+        function toggleShlok(shlokId) {
+            const element = document.getElementById(shlokId);
+            element.classList.toggle('hidden');
+        }
+    </script>
+
+</body>
+</html>
